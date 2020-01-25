@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { Router } from '@angular/router';
-import swal from 'sweetalert';
+import sw from 'sweetalert';
 
 @Component({
 	selector: 'app-addproject',
@@ -22,7 +22,7 @@ export class AddprojectComponent implements OnInit {
 		if (this.validator()) {
 			this.projectService.saveProject(this.project).subscribe(
 				res => {
-					swal({
+					sw({
 						icon: 'success',
 						title: 'Success',
 						text: res.message,
@@ -31,7 +31,7 @@ export class AddprojectComponent implements OnInit {
 					this.router.navigate([ '/index' ]);
 				},
 				err => {
-					swal({
+					sw({
 						icon: 'error',
 						title: 'Error',
 						text: err.error.message,
@@ -44,7 +44,7 @@ export class AddprojectComponent implements OnInit {
 
 	validator() {
 		if (this.project.title == '') {
-			swal({
+			sw({
 				icon: 'error',
 				title: 'Error',
 				text: 'Title is empty',
@@ -53,7 +53,7 @@ export class AddprojectComponent implements OnInit {
 			return false;
 		}
 		else if (this.project.description == '') {
-			swal({
+			sw({
 				icon: 'error',
 				title: 'Error',
 				text: 'Description is empty',
@@ -65,7 +65,7 @@ export class AddprojectComponent implements OnInit {
 	}
 
 	return() {
-		swal({
+		sw({
 			icon: 'warning',
 			title: 'He wants to return?',
 			text: 'The data has not been saved',

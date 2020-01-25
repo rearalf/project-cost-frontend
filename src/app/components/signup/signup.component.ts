@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
-import swal from 'sweetalert';
+import sw from 'sweetalert';
 
 @Component({
 	selector: 'app-signup',
@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
 		if (this.validator()) {
 			this.authService.signUpUser(this.user).subscribe(
 				res => {
-					swal({
+					sw({
 						icon: 'success',
 						title: 'Success',
 						text: res.message,
@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
 					this.router.navigate([ '/signin' ]);
 				},
 				err => {
-					swal({
+					sw({
 						icon: 'error',
 						title: 'Error',
 						text: err.error.message,
@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
 
 	validator() {
 		if (this.user.email == '') {
-			swal({
+			sw({
 				icon: 'warning',
 				title: 'Warning',
 				text: 'Email is empty',
@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
 			return false;
 		}
 		if (this.user.password == '') {
-			swal({
+			sw({
 				icon: 'warning',
 				title: 'Warning',
 				text: 'Password is empty',
@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit {
 			return false;
 		}
 		if (this.user.name == '') {
-			swal({
+			sw({
 				icon: 'warning',
 				title: 'Warning',
 				text: 'Name is empty',

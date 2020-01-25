@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
-import swal from 'sweetalert';
+import sw from 'sweetalert';
 import { error } from 'protractor';
 
 @Component({
@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
 					this.router.navigate([ '/index' ]);
 				},
 				err => {
-					swal({
+					sw({
 						icon: 'error',
 						title: 'Error',
 						text: err.error.message,
@@ -50,7 +50,7 @@ export class SigninComponent implements OnInit {
 
 	validator() {
 		if (this.user.email == '') {
-			swal({
+			sw({
 				icon: 'warning',
 				title: 'Warning',
 				text: 'Email is empty',
@@ -59,7 +59,7 @@ export class SigninComponent implements OnInit {
 			return false;
 		}
 		if (this.user.password == '') {
-			swal({
+			sw({
 				icon: 'warning',
 				title: 'Warning',
 				text: 'Password is empty',

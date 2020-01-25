@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
-import swal from 'sweetalert';
+import sw from 'sweetalert';
 
 @Component({
 	selector: 'app-index',
@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
 	delete(idProject) {
 		this.projectService.deleteProject(idProject).subscribe(
 			res => {
-				swal({
+				sw({
 					icon: 'success',
 					title: 'Success',
 					text: res.message,
@@ -28,7 +28,7 @@ export class IndexComponent implements OnInit {
 				this.GetProjects();
 			},
 			err => {
-				swal({
+				sw({
 					icon: 'error',
 					title: 'Error',
 					text: err.error.message,
