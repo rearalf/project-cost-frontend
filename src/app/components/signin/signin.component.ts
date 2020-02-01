@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
-import sw from 'sweetalert';
-import { error } from 'protractor';
+import swal from 'sweetalert2';
+//import { error } from 'protractor';
 
 @Component({
 	selector: 'app-signin',
@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
 					this.router.navigate([ '/index' ]);
 				},
 				err => {
-					sw({
+					swal.fire({
 						icon: 'error',
 						title: 'Error',
 						text: err.error.message,
@@ -50,7 +50,7 @@ export class SigninComponent implements OnInit {
 
 	validator() {
 		if (this.user.email == '') {
-			sw({
+			swal.fire({
 				icon: 'warning',
 				title: 'Warning',
 				text: 'Email is empty',
@@ -59,7 +59,7 @@ export class SigninComponent implements OnInit {
 			return false;
 		}
 		if (this.user.password == '') {
-			sw({
+			swal.fire({
 				icon: 'warning',
 				title: 'Warning',
 				text: 'Password is empty',

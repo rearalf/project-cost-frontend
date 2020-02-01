@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
-import sw from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-index',
@@ -9,6 +9,18 @@ import sw from 'sweetalert';
 })
 export class IndexComponent implements OnInit {
 	projects = [];
+
+	Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 2000,
+		timerProgressBar: true,
+		onOpen: toast => {
+			toast.addEventListener('mouseenter', Swal.stopTimer);
+			toast.addEventListener('mouseleave', Swal.resumeTimer);
+		},
+	});
 
 	constructor(private projectService: ProjectService) {}
 
@@ -19,16 +31,14 @@ export class IndexComponent implements OnInit {
 	delete(idProject) {
 		this.projectService.deleteProject(idProject).subscribe(
 			res => {
-				sw({
+				this.Toast.fire({
 					icon: 'success',
-					title: 'Success',
-					text: res.message,
-					timer: 1000,
+					title: res.message,
 				});
 				this.GetProjects();
 			},
 			err => {
-				sw({
+				Swal.fire({
 					icon: 'error',
 					title: 'Error',
 					text: err.error.message,
